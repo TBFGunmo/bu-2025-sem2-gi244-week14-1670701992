@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIMainScene : MonoBehaviour
 {
     public static UIMainScene Instance { get; private set; }
+    public Button exitButton;
     
     public interface IUIInfoContent
     {
@@ -27,6 +29,11 @@ public class UIMainScene : MonoBehaviour
         Instance = this;
         InfoPopup.gameObject.SetActive(false);
         ResourceDB.Init();
+
+        exitButton.onClick.AddListener(() => 
+        {
+            SceneManager.LoadScene("Menu");
+        });
     }
 
     private void OnDestroy()
